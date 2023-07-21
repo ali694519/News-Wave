@@ -52,6 +52,7 @@ class UserRoleController extends Controller
             'image' => 'nullable',
             ]);
             $input = $request->all();
+
             $input['password'] = Hash::make($input['password']);
             $user = User::create($input);
             $fox = 'users';
@@ -99,6 +100,7 @@ class UserRoleController extends Controller
      use ImageTrait;
    public function update(Request $request)
     {
+
     $input = $request->all();
     $id = $input['id'];
 

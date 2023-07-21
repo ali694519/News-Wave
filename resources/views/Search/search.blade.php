@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title')
   Search-news programme
-@stop
+@endsection
 @section('css')
 @endsection
 @section('page-header')
@@ -12,6 +12,7 @@
         <h4 class="content-title mb-0 my-auto">Search</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
       </div>
     </div>
+
     <div class="d-flex my-xl-auto right-content">
       <div class="pr-1 mb-3 mb-xl-0">
         <button type="button" class="btn btn-info btn-icon ml-2"><i class="mdi mdi-filter-variant"></i></button>
@@ -20,7 +21,7 @@
         <button type="button" class="btn btn-danger btn-icon ml-2"><i class="mdi mdi-star"></i></button>
       </div>
       <div class="pr-1 mb-3 mb-xl-0">
-        <button type="button" class="btn btn-warning  btn-icon ml-2"><i class="mdi mdi-refresh"></i></button>
+        <a href="#" type="button" class="btn btn-warning  btn-icon ml-2"><i class="mdi mdi-refresh"></i></a>
       </div>
     </div>
   </div>
@@ -33,7 +34,14 @@
       @foreach ($posts as $res)
         <div class="col-12 col-sm-6 col-lg-6 col-xl-3">
           <div class="card card-primary">
-            <img class="card-img-top" style="width:400;height:400" src="{{ $res->image->url }}" alt="">
+
+
+            @if ($res->image)
+              <img class="card-img-top" style="width:400;height:400" src="{{ asset('images/' . $res->image->url) }}"
+                alt="Category Image">
+            @else
+              <p>No image available for this category.</p>
+            @endif
 
             <div class="card-header pb-0">
               <h5 class="card-title mb-0 pb-0">{{ $res->title }}</h5>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title')
   News-news programme
-@stop
+@endsection
 @section('css')
   <!-- Internal Data table css -->
   <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
@@ -65,10 +65,17 @@
 
           {{-- Searcg With Three Elements --}}
           <div class="card-body pb-0">
-            <form action="{{ route('Filter_Classes') }}" method="POST">
-              {{ csrf_field() }}
+            <form action="{{ URL::current() }}" method="get">
               <div class="input-group mb-2">
-                <input type="text" name="search"class="form-control" placeholder="Searching.....">
+                <!-- Add the 'value' attribute to the input field -->
+                <input type="text" name="search" class="form-control" value="{{ request('search') }}"
+                  placeholder="Searching.....">
+
+                <select name="status" id="" class="form-control mx-2">
+                  <option value="">All</option>
+                  <option value="publish" {{ request('status') === 'publish' ? 'selected' : '' }}>Publish</option>
+                  <option value="unpublish" {{ request('status') === 'unpublish' ? 'selected' : '' }}>Un Publish</option>
+                </select>
                 <span class="input-group-append">
                   <button type="submit" class="btn ripple btn-primary" type="button">Search</button>
                 </span>
@@ -321,6 +328,9 @@
     </div>
     <!--/div-->
 
+       {{ $news->withQueryString()->links() }}
+
+
 
     <!-- Add New News  -->
     <div class="modal" id="mmodaldemo8">
@@ -434,6 +444,4 @@
   <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
   <!--Internal  Datatable js -->
   <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
-  <!-- Internal Modal js-->
-  <script src="{{ URL::asset('assets/js/modal.js') }}"></script>
 @endsection

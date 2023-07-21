@@ -236,8 +236,7 @@
                                   <br>
                                   <div class="form-group">
                                     <label for="exampleInputfile">News Image</label>
-                                    <input type="file" name="image"
-                                      value="{{ asset('images/' . $ne->image->url) }}" class="form-control"
+                                    <input type="file" name="image" value="" class="form-control"
                                       id="exampleInputfile">
                                   </div>
                                   <img src="{{ asset('images/' . $ne->image->url) }}" style="width:70px;height:70px"
@@ -324,6 +323,8 @@
       </div>
     </div>
     <!--/div-->
+
+    {{ $category->links() }}
 
 
     <!-- Add New News  -->

@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StorePostRequest;
 use App\Notifications\NewsNotification;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 
 class PostController extends Controller
@@ -32,17 +30,26 @@ class PostController extends Controller
   {
     $users = User::all();
     $tags = tag::all();
-    $news = post::with(['tags', 'image','category'])->get();
-
+    $news = post::with(['tags', 'image','category'])->paginate(5);
     $category = category::with(['posts', 'image'])->get();
     return view('News.news', compact('category', 'news', 'tags', 'users'));
   }
-   {
+  {
+
+    $request = request();
+    $query = post::query();
+    if($name = $request->query('search')) {
+        $query->where('title','LIKE',"%$name%");
+    }
+    if($status = $request->query('status')) {
+        $query->where('status','=',$status);
+    }
+
     $users = User::all();
     $tags = tag::all();
-    $news = post::with(['tags', 'image','category'])->get();
-
     $category = category::with(['posts', 'image'])->get();
+    $news =$query->with(['tags', 'image'])->paginate(5);
+
     return view('News.news_admin', compact('category', 'news', 'tags', 'users'));
   }
 

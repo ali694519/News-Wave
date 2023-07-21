@@ -36,74 +36,75 @@
     <!-- row -->
     <div class="row row-sm">
 
-      {{-- posts --}}
-      <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-        <div class="card overflow-hidden sales-card bg-primary-gradient">
-          <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-            <div class="">
-              <h6 class="mb-3 tx-12 text-white">Posts</h6>
-            </div>
-            <div class="pb-0 mt-0">
-              <div class="d-flex">
-                <div class="">
-                  <h6 class="tx-20 font-weight-bold mb-1 text-white">
-                    The total number of registered news
 
-                  </h6>
-                  <p class="mb-0 tx-12 text-white op-7">
-                    Posts Count
-                    {{ \App\Models\post::count() }}
-                  </p>
+      @can('posts&Users')
+        {{-- posts --}}
+        <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+          <div class="card overflow-hidden sales-card bg-primary-gradient">
+            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+              <div class="">
+                <h6 class="mb-3 tx-12 text-white">Posts</h6>
+              </div>
+              <div class="pb-0 mt-0">
+                <div class="d-flex">
+                  <div class="">
+                    <h6 class="tx-20 font-weight-bold mb-1 text-white">
+                      The total number of registered news
+
+                    </h6>
+                    <p class="mb-0 tx-12 text-white op-7">
+                      Posts Count
+                      {{ \App\Models\post::count() }}
+                    </p>
+                  </div>
+                  <span class="float-right my-auto mr-auto">
+                    <i class="fas fa-arrow-circle-up text-white"></i>
+                  </span>
                 </div>
-                <span class="float-right my-auto mr-auto">
-                  <i class="fas fa-arrow-circle-up text-white"></i>
-                </span>
               </div>
             </div>
+            <span id="compositeline" class="pt-1">
+              <canvas width="253"height="30"
+                style="display: inline-block; width: 253.5px; height: 30px; vertical-align: top;"></canvas>
+            </span>
           </div>
-          <span id="compositeline" class="pt-1">
-            {{-- 5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12 --}}
-            <canvas width="253"height="30"
-              style="display: inline-block; width: 253.5px; height: 30px; vertical-align: top;"></canvas>
-          </span>
         </div>
-      </div>
+
+        {{-- Users --}}
+        <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
+          <div class="card overflow-hidden sales-card bg-danger-gradient">
+            <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
+              <div class="">
+                <h6 class="mb-3 tx-12 text-white"> Users</h6>
+              </div>
+              <div class="pb-0 mt-0">
+                <div class="d-flex">
+                  <div class="">
+                    <h6 class="tx-20 font-weight-bold mb-1 text-white">
+                      The total number of registered Users
+
+                    </h6>
+                    <p class="mb-0 tx-12 text-white op-7">
+                      Users Count
+                      {{ \App\Models\User::count() }}
+                    </p>
+                  </div>
+                  <span class="float-right my-auto mr-auto">
+                    <i class="fas fa-arrow-circle-up text-white"></i>
 
 
-      {{-- Users --}}
-      <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-        <div class="card overflow-hidden sales-card bg-danger-gradient">
-          <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-            <div class="">
-              <h6 class="mb-3 tx-12 text-white"> Users</h6>
-            </div>
-            <div class="pb-0 mt-0">
-              <div class="d-flex">
-                <div class="">
-                  <h6 class="tx-20 font-weight-bold mb-1 text-white">
-                    The total number of registered Users
-
-                  </h6>
-                  <p class="mb-0 tx-12 text-white op-7">
-                    Users Count
-                    {{ \App\Models\User::count() }}
-                  </p>
+                  </span>
                 </div>
-                <span class="float-right my-auto mr-auto">
-                  <i class="fas fa-arrow-circle-up text-white"></i>
-
-
-                </span>
               </div>
             </div>
+            <span id="compositeline2" class="pt-1">
+              <canvas width="253" height="30"
+                style="display: inline-block; width: 253.5px; height: 30px; vertical-align: top;"></canvas>
+            </span>
           </div>
-          <span id="compositeline2" class="pt-1">
-            {{-- 3,2,4,6,12,14,8,7,14,16,12,7,8,4,3,2,2,5,6,7 --}}
-            <canvas width="253" height="30"
-              style="display: inline-block; width: 253.5px; height: 30px; vertical-align: top;"></canvas>
-          </span>
         </div>
-      </div>
+      @endcan
+
 
       <h3 class="main-content-title">
         <div class="news-container">
@@ -209,7 +210,7 @@
                   </svg> Share
 
                   {{-- facebook --}}
-                  <a href="www.facebook.com">
+                  <a href="https://www.facebook.com/">
                     <svg class="ooo" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                       fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                       <path

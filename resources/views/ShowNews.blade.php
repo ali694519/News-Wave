@@ -33,8 +33,16 @@
   <div class="row">
     <div class="col-xl-12 col-md-4">
       <div class="card custom-card">
-        <img class="card-img-top" style="width:400;height:400" src="{{ asset('images/' . $news->image->url) }}"
-          alt="">
+
+        @if ($news->image)
+          <img src="{{ asset('images/' . $news->image->url) }}" class="card-img-top" style="width:400;height:400"
+            alt="Category Image">
+        @else
+          <p>No image available for this category.</p>
+        @endif
+
+
+
         <div class="card-body">
           <h4 class="card-title">{{ $news->title }}</h4>
           <h6>{{ $news->category['cate_name'] }}</h6>
@@ -99,7 +107,7 @@
             <br>
             <br>
             {{-- facebook --}}
-            <a href="www.facebook.com">
+            <a href="https://www.facebook.com/">
               <svg class="ooo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-facebook" viewBox="0 0 16 16">
                 <path

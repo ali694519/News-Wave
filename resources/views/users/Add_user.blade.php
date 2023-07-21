@@ -2,9 +2,10 @@
 @section('css')
   <!-- Internal Nice-select css  -->
   <link href="{{ URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet" />
+@endsection
 @section('title')
   Add User-News
-@stop
+@endsection
 
 
 @endsection
@@ -67,33 +68,27 @@
                   name="email" required="" type="email">
               </div>
             </div>
-
           </div>
-
           <div class="row mg-b-20">
             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
               <label> Password <span class="tx-danger">*</span></label>
               <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                 name="password" required="" type="password">
             </div>
-
             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
               <label> Confrim Password <span class="tx-danger">*</span></label>
               <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                 name="password_confirmation" required="" type="password">
             </div>
-
             <div class="form-group">
               <label for="exampleInputfile">News Image</label>
               <input type="file" name="image" class="form-control" id="exampleInputfile">
             </div>
-
           </div>
-
           <div class="row row-sm mg-b-20">
             <div class="col-lg-6">
               <label class="form-label"> User Status</label>
-              <select name="Status" id="select-beast" class="form-control  nice-select  custom-select">
+              <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
                 <option value="Enabled">Enabled</option>
                 <option value="Not enabled">Not enabled</option>
               </select>
@@ -123,8 +118,6 @@
 <!-- main-content closed -->
 @endsection
 @section('js')
-
-
 <!-- Internal Nice-select js-->
 <script src="{{ URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js') }}"></script>
