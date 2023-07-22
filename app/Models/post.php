@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,15 @@ class post extends Model
         'date_to_publish'
     ];
     public $timestamps = true;
+
+    public function scopeFilter(Builder $builder, $filters) {
+        if($filters['search'] ?? false) {
+            $builder->where('title','LIKE',"%{$filters['search']}%");
+        }
+         if($filters['status'] ?? false) {
+          $builder->where('status','=',$filters['status']);
+        }
+    }
 
     // Relationships get the category from post
     public function category()

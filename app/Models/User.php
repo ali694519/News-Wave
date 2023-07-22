@@ -5,6 +5,7 @@ namespace App\Models;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -49,6 +50,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'roles_name'=>'array'
     ];
+
+      public function scopeFilter(Builder $builder, $filters) {
+        if($filters['search'] ?? false) {
+            $builder->where('name','LIKE',"%{$filters['search']}%");
+        }
+         if($filters['status'] ?? false) {
+          $builder->where('status','=',$filters['status']);
+        }
+    }
+
 
 
     // Relationships get the users from posts

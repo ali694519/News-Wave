@@ -19,16 +19,7 @@ class UserRoleController extends Controller
      */
     public function index(Request $request)
     {
-         $request = request();
-    $query = User::query();
-    if($name = $request->query('search')) {
-        $query->where('name','LIKE',"%$name%");
-    }
-    if($status = $request->query('status')) {
-        $query->where('status','=',$status);
-    }
-
-     $data = $query->paginate(5);
+     $data = User::Filter($request->query())->paginate(5);
      return view('users.show_users',compact('data'));
     }
 

@@ -35,22 +35,13 @@ class PostController extends Controller
     return view('News.news', compact('category', 'news', 'tags', 'users'));
   }
   {
-
     $request = request();
-    $query = post::query();
-    if($name = $request->query('search')) {
-        $query->where('title','LIKE',"%$name%");
-    }
-    if($status = $request->query('status')) {
-        $query->where('status','=',$status);
-    }
-
     $users = User::all();
     $tags = tag::all();
     $category = category::with(['posts', 'image'])->get();
-    $news =$query->with(['tags', 'image'])->paginate(5);
-
+    $news =post::Filter($request->query())->with(['tags', 'image'])->paginate(5);
     return view('News.news_admin', compact('category', 'news', 'tags', 'users'));
+
   }
 
 }
