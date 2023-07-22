@@ -63,7 +63,7 @@
           </div>
 
 
-          {{-- Searcg With Three Elements --}}
+          {{-- Searcg With Elements --}}
           <div class="card-body pb-0">
             <form action="{{ URL::current() }}" method="get">
               <div class="input-group mb-2">
@@ -251,8 +251,6 @@
                                   <input type="date"
                                     value=" {{ date('d-m-Y H:i:s', strtotime($ne->date_to_publish)) }}"
                                     class="form-control fc-datepicker" name="Due_date" placeholder="" required>
-
-
                                 </div>
                                 <br>
                             </div>
@@ -328,7 +326,7 @@
     </div>
     <!--/div-->
 
-       {{ $news->withQueryString()->links() }}
+    {{ $news->withQueryString()->links() }}
 
 
 

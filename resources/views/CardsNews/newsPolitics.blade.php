@@ -22,7 +22,7 @@
       @if ($cat->status === 'publish')
         <div class="col-lg-4 col-md-12 col-12 col-sm-12">
           <div class="card">
-            <img class="card-img-top" style="width:400;height:200px" src="{{ $cat->image->url }}">
+            <img class="card-img-top" style="width:400;height:200px" src="{{ asset('images/' . $cat->image->url) }}">
             <div class="card-body">
               <p class="card-text">
                 @php

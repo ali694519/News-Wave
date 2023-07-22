@@ -35,6 +35,25 @@
     </div>
   @endif
 
+  {{-- Searcg With Elements --}}
+  <div class="card-body pb-0">
+    <form action="{{ URL::current() }}" method="get">
+      <div class="input-group mb-2">
+        <!-- Add the 'value' attribute to the input field -->
+        <input type="text" name="search" class="form-control" value="{{ request('search') }}"
+          placeholder="Searching.....">
+        <select name="status" id="" class="form-control mx-2">
+          <option value="">All</option>
+          <option value="Enabled" {{ request('status') === 'Enabled' ? 'selected' : '' }}>Enabled</option>
+          <option value="Not enabled" {{ request('status') === 'Not enabled' ? 'selected' : '' }}>Not enabled</option>
+        </select>
+        <span class="input-group-append">
+          <button type="submit" class="btn ripple btn-primary" type="button">Search</button>
+        </span>
+      </div>
+  </div>
+  </form>
+
   <!-- row opened -->
   <div class="row row-sm">
     <div class="col-xl-12">
@@ -61,9 +80,13 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                  $i = 0;
+                @endphp
                 @foreach ($data as $key => $user)
+                  @php $i++;  @endphp
                   <tr>
-                    <td>{{ ++$i }}</td>
+                    <td>{{ $i }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
@@ -117,7 +140,7 @@
     </div>
     <!--/div-->
 
-    {{ $data->links() }}
+    {{ $data->withQueryString()->links() }}
 
     <!-- Modal effects -->
     <div class="modal" id="modaldemo8">

@@ -1,34 +1,10 @@
 @extends('layouts.master')
 @section('title')
   Home-news programme
-@stop
+@endsection
 @section('css')
-
 @endsection
 @section('page-header')
-  <style>
-    .news-container {
-      overflow: hidden;
-      height: 30px;
-      background-color: #f0f0f01a;
-      display: flex;
-      /* Add this line to enable flexbox layout */
-      justify-content: flex-end;
-      /* Add this line to align the content to the right */
-    }
-
-    .news-content {
-      white-space: nowrap;
-    }
-
-    .news-item {
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      color: #333;
-      text-transform: uppercase;
-    }
-  </style>
-
   <!-- breadcrumb -->
   {{-- <div class="breadcrumb-header justify-content-between"> --}}
   <div class="breadcrumb-header">
@@ -105,40 +81,17 @@
         </div>
       @endcan
 
-
       <h3 class="main-content-title">
         <div class="news-container">
           <div class="news-content">
-            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-              <span class="news-item">
-                INTERNATIONAL NEWS AGENCY
-              </span>
 
-            </marquee>
+            <span class="news-item">
+              INTERNATIONAL NEWS AGENCY
+            </span>
+
           </div>
           </h2>
           <p class="mg-b-0">Trending News </p>
-          <script>
-            $(document).ready(function() {
-              // Adjust the width of the news content based on the total width of the news items
-              function adjustNewsContentWidth() {
-                var totalWidth = 0;
-                $(".news-item").each(function() {
-                  totalWidth += $(this).outerWidth(true);
-                });
-                $(".news-content").width(totalWidth);
-              }
-
-              // Call the function initially
-              adjustNewsContentWidth();
-
-              // Recalculate the width when the window is resized
-              $(window).resize(function() {
-                adjustNewsContentWidth();
-              });
-            });
-          </script>
-
 
 
 
@@ -164,10 +117,6 @@
               <img class="card-img-top" style="width:400;height:200px"
                 src="{{ null !== $ne->image->url ? asset('images/' . $ne->image->url) : asset('/images/1.jpg') }}"
                 alt="">
-
-
-              {{-- <img class="card-img-top" style="width:400;height:200px" src="{{ asset('images/' . $ne->image->url) }}"
-                alt=""> --}}
               <div class="card-body">
                 <h2 class="card-title">{{ $ne->title }}</h2>
                 <h6>{{ $ne->category['cate_name'] }}</h6>
@@ -192,6 +141,16 @@
                     <button type="submit" class="btn btn-primary">Add Comment</button>
                   </div>
                 </form>
+
+
+                {{-- Save --}}
+                <div class="d-flex justify-content-end">
+                  <a class="modal-effect btn btn-sm btn-success" data-toggle="modal" href="#Saves{{ $ne->id }}"
+                    title="Save">
+                    <i class="las la-save"></i> Save
+                  </a>
+                </div>
+
                 <style>
                   .ooo {
                     margin-right: 10px;
@@ -232,6 +191,34 @@
                   {{ $ne->date_to_publish }}
                 </span>
 
+
+
+
+                <!-- Save -->
+                <div class="modal" id="Saves{{ $ne->id }}">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content modal-content-demo">
+                      <div class="modal-header">
+                        <h6 class="modal-title">Save News</h6><button aria-label="Close" class="close"
+                          data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                      </div>
+                      <form action="{{ route('Saved_Records') }}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="modal-body">
+                          <p> Are you sure about the save process?</p><br>
+                          <input type="hidden" name="id" value="{{ $ne->id }}">
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+                <!-- Save -->
+
               </div>
             </div>
           </div>
@@ -248,5 +235,4 @@
   <!-- Container closed -->
 @endsection
 @section('js')
-
 @endsection

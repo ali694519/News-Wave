@@ -45,7 +45,6 @@
             <p>No image available for this category.</p>
           @endif
 
-
           <div class="card-body">
             <h4 class="card-title mb-3">{{ $cate->cate_name }}</h4>
             <a class="btn btn-outline-info btn-rounded btn-block" href="{{ route($cate->cate_name) }}">Read More</a>

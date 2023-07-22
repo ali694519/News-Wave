@@ -22,7 +22,7 @@
     <ul class="side-menu">
       <li class="side-item side-item-category">News</li>
       <li class="slide">
-        <a class="side-menu__item" href="{{ route('home') }}"><svg xmlns="http://www.w3.org/2000/svg"
+        <a class="side-menu__item" href="{{ URL::current() }}"><svg xmlns="http://www.w3.org/2000/svg"
             class="side-menu__icon" viewBox="0 0 24 24">
             <path d="M0 0h24v24H0V0z" fill="none" />
             <path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3" />

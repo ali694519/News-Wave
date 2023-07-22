@@ -13,8 +13,7 @@
     <div class="app-sidebar__user clearfix">
       <div class="dropdown user-pro-body">
         <div class="">
-          {{-- <img alt="user-img" class="avatar avatar-xl brround"
-            src="{{ isset(Auth::user()->image) ? Auth::user()->image->url : asset('/images/download.jfif') }}"> --}}
+
           <a class="profile-user d-flex" href="">
             @if (Auth::check() && isset(Auth::user()->image) && !is_null(Auth::user()->image->url))
               <img alt="user-img"

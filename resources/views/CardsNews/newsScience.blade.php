@@ -22,7 +22,7 @@
 
       <div class="col-lg-4 col-md-12 col-12 col-sm-12">
         <div class="card">
-          <img class="card-img-top" style="width:400;height:200px" src="{{ $cat->image->url }}">
+        <img class="card-img-top" style="width:400;height:200px" src="{{ asset('images/' . $cat->image->url) }}">
           <div class="card-body">
             <p class="card-text">
               @php
@@ -36,11 +36,7 @@
               {{ $first20Words }}
             </p>
           </div>
-          {{-- <span>
-            @foreach ($cat->tags as $item)
-              <span class="tag tag-blue">{{ $item['tag_name'] }}</span>
-            @endforeach
-          </span> --}}
+        
            <a class="btn btn-outline-info btn-rounded btn-block" href="{{ route('showNews', $cat->id) }}">Read More</a>
           <br>
           <style>

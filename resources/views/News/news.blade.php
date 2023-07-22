@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title')
   News-news programme
-@stop
+@endsection
 @section('css')
   <!-- Internal Data table css -->
   <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
@@ -63,7 +63,7 @@
           </div>
 
 
-          {{-- Searcg With Three Elements --}}
+          {{-- Searcg With Elements --}}
           <div class="card-body pb-0">
             <form action="{{ route('Filter_Classes') }}" method="POST">
               {{ csrf_field() }}
