@@ -108,11 +108,18 @@
             <br>
             <br>
 
+
+
             <div class="row mg-b-20">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                  <strong>User Type </strong>
-                  {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control', 'multiple']) !!}
+                  <label for="userRoles"><strong> User Permissions</strong></label>
+                  <select name="roles[]" id="userRoles" class="form-control" multiple>
+                    @foreach ($roles as $roleValue => $roleName)
+                      @php $selected = in_array($roleValue, $userRole) ? 'selected' : ''; @endphp
+                      <option value="{{ $roleValue }}" {{ $selected }}>{{ $roleName }}</option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
             </div>

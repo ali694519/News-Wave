@@ -20,6 +20,7 @@ class UserRoleController extends Controller
     public function index(Request $request)
     {
      $data = User::Filter($request->query())->paginate(5);
+
      return view('users.show_users',compact('data'));
     }
 
@@ -131,7 +132,7 @@ class UserRoleController extends Controller
 
     $user->update($input);
 
-    return redirect()->back()->with('success', 'Data has been updated successfully');
+    return redirect()->route('users.index')->with('success', 'Data has been updated successfully');
 }
 
     /**

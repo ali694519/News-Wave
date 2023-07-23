@@ -110,7 +110,6 @@
                     </td>
                     <td>
 
-
                       <img
                         src="{{ isset($user->image->url) ? asset('images/' . $user->image->url) : asset('/images/download.jfif') }}"
                         style="width:70px;height:70px" alt="image">
